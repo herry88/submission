@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Submission Kedua</string>
+    <string name="title_activity_detail_movie">DetailMovieActivity</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie">MovieList</string>
+    <string name="tvshow">Tv Show</string>
+    <string name="error_logo">Error</string>
+    <string name="kesalahan">Kesalahan</string>
+    <string name="coba_lagi">Coba Lagi</string>
+    <string name="check_connection">Please check your connection!</string>
+    <string name="imageBackground" />
+    <string name="dummy_title" >JudulDisini</string>
+    <string name="description_title">descrtiption_title</string>
+    <string name="description">description</string>
+    <string name="image_poster">poster</string>
+    <string name="second_fragment_label" />
+    <string name="logo_top">logo_top</string>
+    <string name="retry">retry</string>
+    <string name="img_error_not_found">not found</string>
+    <string name="no_content">no content</string>
+    <string name="title_detail_movie">title detail movie</string>
+    <string name="title_detail_tvshow">title detail tv show</string>
+    <string name="data_not_found">data not found</string>
+</resources>
