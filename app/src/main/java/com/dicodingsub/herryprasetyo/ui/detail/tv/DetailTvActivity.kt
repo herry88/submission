@@ -1,4 +1,4 @@
-package com.dicodingsub.herryprasetyo.ui.detail.movie
+package com.dicodingsub.herryprasetyo.ui.detail.tv
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -12,29 +12,31 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.appbar.AppBarLayout
 import com.dicodingsub.herryprasetyo.R
-import com.dicodingsub.herryprasetyo.data.source.local.entity.MovieEntity
+import com.dicodingsub.herryprasetyo.data.source.local.entity.TvEntity
+
 import com.dicodingsub.herryprasetyo.ui.home.HomeActivity.Companion.EXTRA_ID
 import com.dicodingsub.herryprasetyo.util.convertDateFormat
 import com.dicodingsub.herryprasetyo.util.gone
 import com.dicodingsub.herryprasetyo.util.loadImageFromUrl
 import com.dicodingsub.herryprasetyo.util.visible
 import com.dicodingsub.herryprasetyo.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.activity_detail_movie.*
+import kotlinx.android.synthetic.main.activity_detail_tv.*
 import kotlinx.android.synthetic.main.fortyfor.*
 
-class DetailMovieActivity : AppCompatActivity() {
+class DetailTvActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: DetailMovieViewModel
+    private lateinit var viewModel: DetailTvViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_movie)
+        setContentView(R.layout.activity_detail_tv)
         setUpToolbar()
         viewModel = ViewModelProvider(
             this,
             ViewModelFactory.getInstance(this)
-        )[DetailMovieViewModel::class.java]
+        )[DetailTvViewModel::class.java]
         if (!isNetworkAvailable(this)) {
-            layout_error_movie_detail.visible()
+            layout_error.visible()
             progress_bar.gone()
             Toast.makeText(
                 this, getString(R.string.check_connection), Toast.LENGTH_LONG
@@ -47,26 +49,26 @@ class DetailMovieActivity : AppCompatActivity() {
 
     }
 
-
     private fun getData() {
         val extras = intent.extras
         extras?.apply {
             extras.getString(EXTRA_ID)?.let { id ->
-                viewModel.setMovieId(id)
-                val data = viewModel.movie
+                viewModel.setTvShowId(id)
+                val data = viewModel.tv
                 data.observe(
-                    this@DetailMovieActivity,
-                    Observer(this@DetailMovieActivity::handleDataMovie)
+                    this@DetailTvActivity,
+                    Observer(this@DetailTvActivity::handleDataMovie)
                 )
-                viewModel.movieFav.observe(
-                    this@DetailMovieActivity,
-                    Observer(this@DetailMovieActivity::handleFavMovieState)
+                viewModel.tvFav.observe(
+                    this@DetailTvActivity,
+                    Observer(this@DetailTvActivity::handleFavTvState)
                 )
             }
         }
     }
 
-    private fun handleFavMovieState(data: MovieEntity?) {
+
+    private fun handleFavTvState(data: TvEntity?) {
         if (data != null) {
             fab_fav.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -84,40 +86,40 @@ class DetailMovieActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun handleDataMovie(data: MovieEntity?) {
+    private fun handleDataMovie(data: TvEntity?) {
         if (data != null) populateView(data) else {
             progress_bar.gone()
-            layout_error_no_content_movie.visible()
+            layout_error_no_content.visible()
             Toast.makeText(this, getString(R.string.data_not_found), Toast.LENGTH_LONG).show()
         }
     }
 
 
-    private fun populateView(data: MovieEntity) {
+    private fun populateView(data: TvEntity) {
         progress_bar.gone()
         scroll_view.visible()
-        image_postertes.visible()
+        image_poster.visible()
         image_background.visible()
-        tv_title_movie.text = data.title
-        tv_desc_movie.text = if (data.description.isNullOrEmpty()) "-" else data.description
-        tv_release_date_movie.text = data.release?.convertDateFormat()
-        tv_rating_movie.text = data.score
-        tv_genres_movie.text = data.genre
+        tv_title.text = data.title
+        tv_desc.text = if (data.description.isNullOrEmpty()) "-" else data.description
+        tv_release_date.text = data.release?.convertDateFormat()
+        tv_rating.text = data.score
+        tv_genres.text = data.genre
 
         data.poster?.let {
-            image_postertes.loadImageFromUrl(it)
+            image_poster.loadImageFromUrl(it)
         }
     }
 
     private fun loading() {
         progress_bar.visible()
-        layout_error_movie_detail.gone()
-        layout_error_no_content_movie.gone()
+        layout_error.gone()
+        layout_error_no_content.gone()
         scroll_view.gone()
-        image_postertes.gone()
+        image_poster.gone()
         image_background.gone()
     }
+
 
     private fun setUpListener() {
         btn_retry.setOnClickListener {
@@ -131,7 +133,7 @@ class DetailMovieActivity : AppCompatActivity() {
             getData()
         }
         fab_fav.setOnClickListener {
-            viewModel.setFavMovie()
+            viewModel.setFavTv()
         }
     }
 
@@ -145,7 +147,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 scrollRange = barLayout?.totalScrollRange!!
             }
             if (scrollRange + verticalOffset == 0) {
-                collapsingtoolbar.title = getString(R.string.title_detail_movie)
+                collapsingtoolbar.title = getString(R.string.title_detail_tvshow)
                 isShow = true
             } else if (isShow) {
                 collapsingtoolbar.title = " "

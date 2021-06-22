@@ -1,13 +1,14 @@
 package com.dicodingsub.herryprasetyo.util
 
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.detail.DetailMovieResponse
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.detail.DetailTvResponse
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.detail.Genres
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.movie.PopularMoviesResponse
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.movie.ResultMovie
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.tvshow.PopularTvResponse
-import com.dicodingsub.herryprasetyo.data.resource.remoteResponse.responseData.tvshow.ResultsTv
-import com.dicodingsub.herryprasetyo.model.MovieEntity
+import com.dicodingsub.herryprasetyo.data.source.local.entity.MovieEntity
+import com.dicodingsub.herryprasetyo.data.source.local.entity.TvEntity
+import com.dicodingsub.herryprasetyo.data.source.remote.response.detail.DetailMovieResponse
+import com.dicodingsub.herryprasetyo.data.source.remote.response.detail.DetailTvResponse
+import com.dicodingsub.herryprasetyo.data.source.remote.response.detail.Genres
+import com.dicodingsub.herryprasetyo.data.source.remote.response.movie.PopularMoviesResponse
+import com.dicodingsub.herryprasetyo.data.source.remote.response.movie.ResultMovie
+import com.dicodingsub.herryprasetyo.data.source.remote.response.tvshow.PopularTvResponse
+import com.dicodingsub.herryprasetyo.data.source.remote.response.tvshow.ResultsTv
 
 
 object DataDummy {
@@ -140,11 +141,11 @@ object DataDummy {
     }
 
 
-    fun generateDummyTVShows(): ArrayList<MovieEntity> {
-        val tvShowList = ArrayList<MovieEntity>()
+    fun generateDummyTVShows(): ArrayList<TvEntity> {
+        val tvShowList = ArrayList<TvEntity>()
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "1",
                 "R.drawable.poster_arrow",
                 "Arrow",
@@ -157,7 +158,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "2",
                 "R.drawable.poster_iron_fist",
                 "Iron Fist ",
@@ -169,7 +170,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "3",
                 "R.drawable.poster_dragon_ball",
                 "Dragon Ball",
@@ -182,7 +183,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "4",
                 "R.drawable.poster_naruto_shipudden",
                 "Naruto: Shippuden",
@@ -195,7 +196,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "5",
                 "R.drawable.poster_ncis",
                 "NCIS",
@@ -207,7 +208,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "6",
                 "R.drawable.poster_flash",
                 "The Flash",
@@ -219,7 +220,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "7",
                 "R.drawable.poster_gotham",
                 "Gotham",
@@ -231,7 +232,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "8",
                 "R.drawable.poster_shameless",
                 "Shameless",
@@ -243,7 +244,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "9",
                 "R.drawable.poster_hanna",
                 "Hanna",
@@ -255,7 +256,7 @@ object DataDummy {
         )
 
         tvShowList.add(
-            MovieEntity(
+            TvEntity(
                 "10",
                 "R.drawable.poster_supernatural",
                 "Supernatural",
@@ -326,7 +327,6 @@ object DataDummy {
     fun generateDummyDetailTvShowResponse(): DetailTvResponse {
         return DetailTvResponse(
             true,
-
             arrayListOf(Genres(1, "Perang")),
             1,
             "overiviewnya",
@@ -334,6 +334,32 @@ object DataDummy {
             "1997-25-01",
             "Film 1",
             9.7
+
+        )
+    }
+
+    fun generateDummyTvEntity(): TvEntity {
+        return TvEntity(
+            "1",
+            "path poster 1",
+            "overiviewnya",
+            "7.5",
+            "1997-25-01",
+            "Perang",
+            "Fil peram"
+
+        )
+    }
+
+    fun generateDummyMovieEntity(): MovieEntity {
+        return MovieEntity(
+            "1",
+            "path poster 1",
+            "overiviewnya",
+            "7.5",
+            "1997-25-01",
+            "Perang",
+            "Fil peram"
 
         )
     }

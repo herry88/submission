@@ -25,4 +25,11 @@
     <string name="title_detail_movie">title detail movie</string>
     <string name="title_detail_tvshow">title detail tv show</string>
     <string name="data_not_found">data not found</string>
+    <string name="no_more_content">NoContent</string>
+    <string name="movie_fav">MovieFavorite</string>
+    <string name="tvshow_fav">TvShow Favorite</string>
+    <string name="title_detail_movie_fav">detail movie fav</string>
+    <string name="title_detail_tvshow_fav">tv show detail fav</string>
+    <string name="success_delete">delete success</string>
+    <string name="Favorite">Favorite</string>
 </resources>

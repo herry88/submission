@@ -1,12 +1,29 @@
 package com.dicodingsub.herryprasetyo.ui.home.tvshow
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.dicodingsub.herryprasetyo.data.MovieRepository
-import com.dicodingsub.herryprasetyo.model.MovieEntity
+import com.dicodingsub.herryprasetyo.data.source.local.entity.TvEntity
+import com.dicodingsub.herryprasetyo.data.source.remote.factory.PopularTvDataSourceFactory
+import com.dicodingsub.herryprasetyo.vo.NetworkState
 
-class TvShowViewModel(private val repo: MovieRepository) : ViewModel() {
+class TvShowViewModel(
+    private val repo: MovieRepository,
+    private val dataSourceFactory: PopularTvDataSourceFactory
+) : ViewModel() {
 
 
-    fun getTVShows(): LiveData<List<MovieEntity>> = repo.getTvShows()
+    var networkState: LiveData<NetworkState>? = null
+
+    init {
+        networkState =
+            Transformations.switchMap(dataSourceFactory.mutableLiveData) { dataSource ->
+                dataSource.networkState
+            }
+    }
+
+
+    fun getTVShows(): LiveData<PagedList<TvEntity>> = repo.getTvShows(dataSourceFactory)
 }

@@ -5,20 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/purple_200">
 
-    <include
-        android:id="@+id/layout_error"
-        layout="@layout/fortyfor"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_movies"
         android:layout_width="0dp"
-
         android:layout_height="0dp"
         android:background="@color/purple_200"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -28,6 +19,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/layout_error_movie_detail"
+        layout="@layout/fortyfor"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

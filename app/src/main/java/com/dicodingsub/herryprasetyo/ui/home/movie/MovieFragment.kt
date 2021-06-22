@@ -13,21 +13,28 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.dicodingsub.herryprasetyo.R
-import com.dicodingsub.herryprasetyo.model.MovieEntity
-import com.dicodingsub.herryprasetyo.ui.detail.DetailActivity
-import com.dicodingsub.herryprasetyo.ui.home.ItemListCallback
+import com.dicodingsub.herryprasetyo.data.source.local.entity.MovieEntity
+import com.dicodingsub.herryprasetyo.ui.detail.movie.DetailMovieActivity
+import com.dicodingsub.herryprasetyo.ui.home.HomeActivity
 import com.dicodingsub.herryprasetyo.util.gone
 import com.dicodingsub.herryprasetyo.util.visible
-import com.dicodingsub.herryprasetyo.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_movie.*
+import com.dicodingsub.herryprasetyo.viewmodel.MovieViewModelFactory
+import com.dicodingsub.herryprasetyo.vo.NetworkState
+import kotlinx.android.synthetic.main.activity_detail_movie.*
 import kotlinx.android.synthetic.main.fortyfor.*
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_movie.*
+import kotlinx.android.synthetic.main.fragment_movie.layout_error_movie_detail
+import kotlinx.android.synthetic.main.fragment_movie.progress_bar
 
-class MovieFragment : Fragment(), ItemListCallback {
 
-    private val movieAdapter = MovieAdapter(this)
+class MovieFragment : Fragment(),
+    ItemMovieListCallback {
+
+    private val movieAdapter = MoviePagedAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,24 +46,21 @@ class MovieFragment : Fragment(), ItemListCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-
-            val factory = ViewModelFactory.getInstance()
+            setUpRecyclerView()
+            val factory = MovieViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
             val movies = viewModel.getMovies()
-
-            loading()
             if (!isNetworkAvailable(requireContext())) {
-                layout_error.visible()
+                layout_error_movie_detail.visible()
                 progress_bar.gone()
                 Toast.makeText(
-                    requireContext(), getString(R.string.check_connection), Toast.LENGTH_LONG
+                    requireContext(),
+                    getString(R.string.check_connection),
+                    Toast.LENGTH_LONG
                 ).show()
             }
-            with(recycler_view_movies) {
-                layoutManager = GridLayoutManager(context, 2)
-                setHasFixedSize(true)
-                adapter = movieAdapter
-            }
+
+            loading()
             movies.observe(viewLifecycleOwner, Observer(this@MovieFragment::handleData))
             btn_retry.setOnClickListener {
                 if (!isNetworkAvailable(requireContext())) {
@@ -70,32 +74,54 @@ class MovieFragment : Fragment(), ItemListCallback {
                     .observe(viewLifecycleOwner, Observer(this@MovieFragment::handleData))
             }
 
+            viewModel.networkState?.observe(viewLifecycleOwner, Observer {
+                movieAdapter.setNetworkState(it)
+                if (it.status == NetworkState.Status.SUCCESS) {
+                    progress_bar?.visibility = View.GONE
+                    layout_error_movie_detail?.visibility = View.GONE
+                }
+                if (it.status == NetworkState.Status.FAILED) {
+                    progress_bar?.visibility = View.GONE
+                    layout_error_movie_detail?.visibility = View.VISIBLE
+                }
+                if (it.status == NetworkState.Status.EMPTY) {
+                    progress_bar?.visibility = View.GONE
+                }
+            })
 
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        with(recycler_view_movies) {
+            val layoutManager = GridLayoutManager(context, 2)
+            layoutManager.spanSizeLookup =
+                object : SpanSizeLookup() {
+                    override fun getSpanSize(pos: Int): Int {
+                        return when (movieAdapter.getItemViewType(pos)) {
+                            MoviePagedAdapter.TYPE_PROGRESS -> 2
+                            MoviePagedAdapter.TYPE_ITEM -> 1
+                            else -> -1
+                        }
+                    }
+                }
+            this.layoutManager = layoutManager
+            setHasFixedSize(true)
+            adapter = movieAdapter
         }
     }
 
     private fun loading() {
         recycler_view_movies.gone()
         progress_bar.visible()
-        layout_error.gone()
+        layout_error_movie_detail.gone()
     }
 
-    override fun onItemCardClicked(data: MovieEntity) {
-        val intent = Intent(context, DetailActivity::class.java).apply {
-            putExtra(DetailActivity.EXTRA_TYPE, DetailActivity.TYPE_MOVIE)
-            putExtra(DetailActivity.EXTRA_ID, data.id)
-        }
-        startActivity(intent)
-    }
-
-
-    private fun handleData(data: List<MovieEntity>) {
+    private fun handleData(data: PagedList<MovieEntity>) {
         recycler_view_movies.visible()
         progress_bar.gone()
-        movieAdapter.setData(data)
-        movieAdapter.notifyDataSetChanged()
+        movieAdapter.submitList(data)
     }
-
 
     @Suppress("DEPRECATION")
     private fun isNetworkAvailable(context: Context): Boolean {
@@ -116,6 +142,14 @@ class MovieFragment : Fragment(), ItemListCallback {
         } else {
             val nwInfo = connectivityManager.activeNetworkInfo ?: return false
             return nwInfo.isConnected
+        }
+    }
+
+    override fun onItemMovieClicked(data: MovieEntity) {
+        Intent(context, DetailMovieActivity::class.java).apply {
+            putExtra(HomeActivity.EXTRA_ID, data.id)
+            startActivity(this)
+
         }
     }
 }
