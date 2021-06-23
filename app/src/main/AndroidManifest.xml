@@ -19,13 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.detail.movie.DetailMovieActivity"
             android:parentActivityName=".ui.home.HomeActivity" />
         <activity
             android:name=".ui.detail.tv.DetailTvActivity"
             android:parentActivityName=".ui.home.HomeActivity" />
-        
+
 
         <activity
             android:name=".ui.favorite.FavActivity"

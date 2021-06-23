@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setUpToolbar() {
-
+        setSupportActionBar(toolbar)
         supportActionBar?.title = ""
         supportActionBar?.elevation = 0f
     }

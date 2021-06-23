@@ -61,7 +61,7 @@ class TvFavFragment : Fragment(),
     private fun loading() {
         recycler_view_tv_shows.gone()
         progress_bar.visible()
-        layout_error_movie_detail.gone()
+        layout_error.gone()
     }
 
     private fun handleData(data: PagedList<TvEntity>) {
