@@ -48,7 +48,7 @@ class TvShowFragment : Fragment(),
             val tvShows = viewModel.getTVShows()
 
             if (!isNetworkAvailable(requireContext())) {
-                layout_error_movie_detail.visible()
+                layout_error.visible()
                 progress_bar.gone()
                 Toast.makeText(
                     requireContext(), getString(R.string.check_connection), Toast.LENGTH_LONG
@@ -69,15 +69,15 @@ class TvShowFragment : Fragment(),
                     .observe(viewLifecycleOwner, Observer(this@TvShowFragment::handleData))
             }
 
-            viewModel.networkState?.observe(this, Observer {
+            viewModel.networkState?.observe(viewLifecycleOwner, Observer {
                 tvShowAdapter.setNetworkState(it)
                 if (it.status == NetworkState.Status.SUCCESS) {
                     progress_bar?.visibility = View.GONE
-                    layout_error_movie_detail?.visibility = View.GONE
+                    layout_error?.visibility = View.GONE
                 }
                 if (it.status == NetworkState.Status.FAILED) {
                     progress_bar?.visibility = View.GONE
-                    layout_error_movie_detail?.visibility = View.VISIBLE
+                    layout_error?.visibility = View.VISIBLE
                 }
                 if (it.status == NetworkState.Status.EMPTY) {
                     progress_bar?.visibility = View.GONE
@@ -110,7 +110,7 @@ class TvShowFragment : Fragment(),
     private fun loading() {
         recycler_view_tv_shows.gone()
         progress_bar.visible()
-        layout_error_movie_detail.gone()
+        layout_error.gone()
     }
 
     private fun handleData(data: PagedList<TvEntity>) {

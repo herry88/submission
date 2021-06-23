@@ -78,7 +78,7 @@ class TvPagedAdapter(private val listener: ItemTvListCallback) :
                     imagePoster.loadImageFromUrl(it)
                 }
                 when {
-                    adapterPosition % 5 == 0 -> {
+                    bindingAdapterPosition % 5 == 0 -> {
                         frame_layout.setBackgroundColor(
                             ActivityCompat.getColor(
                                 this.context,
@@ -86,7 +86,7 @@ class TvPagedAdapter(private val listener: ItemTvListCallback) :
                             )
                         )
                     }
-                    adapterPosition % 5 == 1 -> {
+                    bindingAdapterPosition % 5 == 1 -> {
                         frame_layout.setBackgroundColor(
                             ActivityCompat.getColor(
                                 this.context,
@@ -94,7 +94,7 @@ class TvPagedAdapter(private val listener: ItemTvListCallback) :
                             )
                         )
                     }
-                    adapterPosition % 5 == 2 -> {
+                    bindingAdapterPosition % 5 == 2 -> {
                         frame_layout.setBackgroundColor(
                             ActivityCompat.getColor(
                                 this.context,
@@ -102,7 +102,7 @@ class TvPagedAdapter(private val listener: ItemTvListCallback) :
                             )
                         )
                     }
-                    adapterPosition % 5 == 3 -> {
+                    bindingAdapterPosition % 5 == 3 -> {
                         frame_layout.setBackgroundColor(
                             ActivityCompat.getColor(
                                 this.context,
@@ -110,7 +110,7 @@ class TvPagedAdapter(private val listener: ItemTvListCallback) :
                             )
                         )
                     }
-                    adapterPosition % 5 == 4 -> {
+                    bindingAdapterPosition % 5 == 4 -> {
                         frame_layout.setBackgroundColor(
                             ActivityCompat.getColor(
                                 this.context,

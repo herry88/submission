@@ -74,7 +74,7 @@ class MovieFragment : Fragment(),
                     .observe(viewLifecycleOwner, Observer(this@MovieFragment::handleData))
             }
 
-            viewModel.networkState?.observe(viewLifecycleOwner, Observer {
+            viewModel.networkState?.observe(this, Observer {
                 movieAdapter.setNetworkState(it)
                 if (it.status == NetworkState.Status.SUCCESS) {
                     progress_bar?.visibility = View.GONE
