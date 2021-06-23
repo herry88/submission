@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.dicodingsub.herryprasetyo.ui.favorite.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
