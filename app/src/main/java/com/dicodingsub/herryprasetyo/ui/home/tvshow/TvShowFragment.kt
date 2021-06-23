@@ -23,8 +23,8 @@ import com.dicodingsub.herryprasetyo.util.gone
 import com.dicodingsub.herryprasetyo.util.visible
 import com.dicodingsub.herryprasetyo.viewmodel.TvViewModelFactory
 import com.dicodingsub.herryprasetyo.vo.NetworkState
-import kotlinx.android.synthetic.main.fragment_tv_show.*
 import kotlinx.android.synthetic.main.fortyfor.*
+import kotlinx.android.synthetic.main.fragment_tv_show.*
 
 class TvShowFragment : Fragment(),
     ItemTvListCallback {

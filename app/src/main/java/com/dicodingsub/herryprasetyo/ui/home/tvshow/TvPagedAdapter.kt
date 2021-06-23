@@ -13,8 +13,8 @@ import com.dicodingsub.herryprasetyo.R
 import com.dicodingsub.herryprasetyo.data.source.local.entity.TvEntity
 import com.dicodingsub.herryprasetyo.util.loadImageFromUrl
 import com.dicodingsub.herryprasetyo.vo.NetworkState
-import kotlinx.android.synthetic.main.hold_network.view.*
 import kotlinx.android.synthetic.main.grid_view.view.*
+import kotlinx.android.synthetic.main.hold_network.view.*
 
 class TvPagedAdapter(private val listener: ItemTvListCallback) :
     PagedListAdapter<TvEntity, RecyclerView.ViewHolder>(DIFF_CALLBACK) {

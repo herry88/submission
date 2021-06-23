@@ -5,5 +5,5 @@
         android:id="@+id/menu_favorite"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_favorite_white"
-        android:title="@string/Favorite"/>
+        android:title="@string/Favorite" />
 </menu>

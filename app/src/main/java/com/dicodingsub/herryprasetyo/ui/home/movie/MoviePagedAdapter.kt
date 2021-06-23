@@ -13,8 +13,8 @@ import com.dicodingsub.herryprasetyo.R
 import com.dicodingsub.herryprasetyo.data.source.local.entity.MovieEntity
 import com.dicodingsub.herryprasetyo.util.loadImageFromUrl
 import com.dicodingsub.herryprasetyo.vo.NetworkState
-import kotlinx.android.synthetic.main.hold_network.view.*
 import kotlinx.android.synthetic.main.grid_view.view.*
+import kotlinx.android.synthetic.main.hold_network.view.*
 
 class MoviePagedAdapter(private val listener: ItemMovieListCallback) :
     PagedListAdapter<MovieEntity, RecyclerView.ViewHolder>(DIFF_CALLBACK) {

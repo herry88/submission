@@ -6,7 +6,6 @@
     android:background="@color/purple_200">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_movies"
         android:layout_width="0dp"

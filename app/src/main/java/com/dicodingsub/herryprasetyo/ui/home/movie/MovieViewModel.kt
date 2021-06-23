@@ -10,8 +10,7 @@ import com.dicodingsub.herryprasetyo.data.source.remote.factory.PopularMoviesDat
 import com.dicodingsub.herryprasetyo.vo.NetworkState
 
 class MovieViewModel(
-    private val repo: MovieRepository
-    , private var dataSourceFactory: PopularMoviesDataSourceFactory
+    private val repo: MovieRepository, private var dataSourceFactory: PopularMoviesDataSourceFactory
 ) : ViewModel() {
 
 

@@ -7,17 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.appbar.AppBarLayout
 import com.dicodingsub.herryprasetyo.R
 import com.dicodingsub.herryprasetyo.data.source.local.entity.MovieEntity
 import com.dicodingsub.herryprasetyo.data.source.local.entity.TvEntity
 import com.dicodingsub.herryprasetyo.ui.favorite.favmovie.MovieFavFragment
-
 import com.dicodingsub.herryprasetyo.ui.home.HomeActivity.Companion.EXTRA_ID
 import com.dicodingsub.herryprasetyo.util.gone
 import com.dicodingsub.herryprasetyo.util.loadImageFromUrl
 import com.dicodingsub.herryprasetyo.util.visible
 import com.dicodingsub.herryprasetyo.viewmodel.ViewModelFactory
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_detail_tv.*
 
 class DetailFavMovieTvActivity : AppCompatActivity() {
@@ -85,7 +84,7 @@ class DetailFavMovieTvActivity : AppCompatActivity() {
         fab_fav.setImageDrawable(
             ContextCompat.getDrawable(
                 this,
-                R.drawable.ic_favorite_border
+                R.drawable.ic_favorite
             )
         )
         progress_bar.gone()

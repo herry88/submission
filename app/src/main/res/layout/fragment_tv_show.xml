@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_500">
+
     <include
         android:id="@+id/layout_error"
         layout="@layout/fortyfor"

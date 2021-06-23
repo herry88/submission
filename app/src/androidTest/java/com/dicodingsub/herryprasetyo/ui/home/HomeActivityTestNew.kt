@@ -18,7 +18,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class HomeActivityTestNew{
+class HomeActivityTestNew {
 
     @get:Rule
     var activityRule = ActivityScenarioRule(HomeActivity::class.java)
@@ -49,7 +49,12 @@ class HomeActivityTestNew{
 
     @Test
     fun loadDetailMovie() {
-        onView(withId(R.id.recycler_view_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.recycler_view_movies)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
         onView(withId(R.id.layout_error)).check(matches(not(isDisplayed())))
         onView(withId(R.id.layout_error_no_content)).check(matches(not(isDisplayed())))
         onView(withId(R.id.image_poster)).check(matches(isDisplayed()))
@@ -90,7 +95,12 @@ class HomeActivityTestNew{
                 isDisplayed()
             )
         )
-        onView(withId(R.id.recycler_view_tv_shows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.recycler_view_tv_shows)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
         onView(withId(R.id.layout_error)).check(matches(not(isDisplayed())))
         onView(withId(R.id.layout_error_no_content)).check(matches(not(isDisplayed())))
 

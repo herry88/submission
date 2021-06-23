@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.appbar.AppBarLayout
 import com.dicodingsub.herryprasetyo.R
 import com.dicodingsub.herryprasetyo.data.source.local.entity.MovieEntity
 import com.dicodingsub.herryprasetyo.ui.home.HomeActivity.Companion.EXTRA_ID
@@ -19,6 +18,7 @@ import com.dicodingsub.herryprasetyo.util.gone
 import com.dicodingsub.herryprasetyo.util.loadImageFromUrl
 import com.dicodingsub.herryprasetyo.util.visible
 import com.dicodingsub.herryprasetyo.viewmodel.ViewModelFactory
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 import kotlinx.android.synthetic.main.fortyfor.*
 
@@ -71,7 +71,7 @@ class DetailMovieActivity : AppCompatActivity() {
             fab_fav.setImageDrawable(
                 ContextCompat.getDrawable(
                     this,
-                    R.drawable.ic_favorite_border
+                    R.drawable.ic_favorite
                 )
             )
         } else {
