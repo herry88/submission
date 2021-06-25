@@ -21,7 +21,6 @@ import org.junit.Test
 
 class HomeActivityTestSUB3 {
 
-
     @get:Rule
     var activity = ActivityScenarioRule(HomeActivity::class.java)
 
@@ -186,7 +185,7 @@ class HomeActivityTestSUB3 {
         onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         onView(withId(R.id.menu_favorite)).perform(click())
 
-        onView(ViewMatchers.withText("TV SHOW FAV")).perform(click())
+        onView(ViewMatchers.withText("TVSHOWFAVORITE")).perform(click())
         onView(withId(R.id.recycler_view_tv_shows)).check(
             matches(
                 isDisplayed()
