@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.dicodingsub.herryprasetyo.R
 import com.dicodingsub.herryprasetyo.ui.home.movie.MovieFragment
 import com.dicodingsub.herryprasetyo.ui.home.tvshow.TvShowFragment
-
+@Suppress("DEPRECATION")
 class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -22,7 +22,7 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
             else -> Fragment()
         }
 
-    override fun getPageTitle(position: Int): CharSequence? =
+    override fun getPageTitle(position: Int): CharSequence =
         mContext.resources.getString(TAB_TITLES[position])
 
     override fun getCount(): Int = 2

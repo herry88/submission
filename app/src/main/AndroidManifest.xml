@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dicodingsub.herryprasetyo">
-    <!--    <uses-permission android:name="android.permission.INSTALL_GRANT_RUNTIME_PERMISSIONS"/>-->
+
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 

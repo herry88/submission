@@ -27,7 +27,7 @@
     <string name="data_not_found">data not found</string>
     <string name="no_more_content">NoContent</string>
     <string name="movie_fav">MovieFavorite</string>
-    <string name="tvshow_fav">TvShow Favorite</string>
+    <string name="tvshow_fav">TvShowFavorite</string>
     <string name="title_detail_movie_fav">detail movie fav</string>
     <string name="title_detail_tvshow_fav">tv show detail fav</string>
     <string name="success_delete">delete success</string>

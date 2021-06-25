@@ -28,7 +28,9 @@ class HomeActivityTestSUB3 {
     @Before
     fun setUp() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoTestIdlingResource)
+
     }
+
 
     @After
     fun tearDown() {
@@ -162,12 +164,13 @@ class HomeActivityTestSUB3 {
 
         onView(withId(R.id.tv_desc)).check(matches(isDisplayed()))
         onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.fab_fav)).perform(click())
     }
 
 
     @Test
     fun loadFavTv() {
-        onView(ViewMatchers.withText("TV SHOW AKU")).perform(click())
+        onView(ViewMatchers.withText("TV SHOW")).perform(click())
         onView(withId(R.id.recycler_view_tv_shows)).check(
             matches(
                 isDisplayed()
@@ -183,7 +186,7 @@ class HomeActivityTestSUB3 {
         onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
         onView(withId(R.id.menu_favorite)).perform(click())
 
-        onView(ViewMatchers.withText("TV SHOW FAV SATA")).perform(click())
+        onView(ViewMatchers.withText("TV SHOW FAV")).perform(click())
         onView(withId(R.id.recycler_view_tv_shows)).check(
             matches(
                 isDisplayed()
@@ -208,7 +211,6 @@ class HomeActivityTestSUB3 {
         onView(withId(R.id.tv_desc)).check(matches(isDisplayed()))
 
         onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.fab_fav)).perform(click())
     }
-
-
 }

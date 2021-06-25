@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.dicodingsub.herryprasetyo.ui.favorite
 
 import android.content.Context
